@@ -15,7 +15,7 @@ const RequestList = ({ requests }) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5001/api/requests/${requestId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/requests/${requestId}`, {
                 method: 'DELETE'
             });
 

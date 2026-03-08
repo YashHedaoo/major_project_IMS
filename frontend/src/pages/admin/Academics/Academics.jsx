@@ -31,7 +31,7 @@ const Academics = () => {
 
     const fetchSubjects = async () => {
         try {
-            const response = await fetch('http://localhost:5001/api/subjects');
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/subjects');
             const data = await response.json();
             setSubjects(data);
         } catch (error) {
@@ -42,7 +42,7 @@ const Academics = () => {
     const handleAddSubject = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5001/api/subjects', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/subjects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newSubject)
@@ -60,7 +60,7 @@ const Academics = () => {
     const handleDeleteSubject = async (id) => {
         if (!window.confirm('Are you sure you want to delete this subject?')) return;
         try {
-            await fetch(`http://localhost:5001/api/subjects/${id}`, { method: 'DELETE' });
+            await fetch(`${import.meta.env.VITE_API_URL}/api/subjects/${id}`, { method: 'DELETE' });
             fetchSubjects();
         } catch (error) {
             console.error('Error deleting subject:', error);

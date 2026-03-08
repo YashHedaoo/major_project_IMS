@@ -21,7 +21,7 @@ const UserDetails = () => {
         const fetchUserData = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:5001/api/users/${id}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 if (response.ok) {

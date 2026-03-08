@@ -15,7 +15,7 @@ export const FeeProvider = ({ children }) => {
         if (!token) return;
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:5001/api/fees/structures', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/fees/structures', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
@@ -31,7 +31,7 @@ export const FeeProvider = ({ children }) => {
         if (!token || user?.role?.toLowerCase() !== 'student') return;
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:5001/api/fees/my-fees', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/fees/my-fees', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
@@ -46,7 +46,7 @@ export const FeeProvider = ({ children }) => {
     const fetchStats = async () => {
         if (!token || user?.role?.toLowerCase() !== 'admin') return;
         try {
-            const response = await fetch('http://localhost:5001/api/fees/stats', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/fees/stats', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
@@ -59,7 +59,7 @@ export const FeeProvider = ({ children }) => {
     const fetchDefaulters = async () => {
         if (!token || user?.role?.toLowerCase() !== 'admin') return;
         try {
-            const response = await fetch('http://localhost:5001/api/fees/defaulters', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/fees/defaulters', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await response.json();
@@ -71,7 +71,7 @@ export const FeeProvider = ({ children }) => {
 
     const submitPayment = async (paymentData) => {
         try {
-            const response = await fetch('http://localhost:5001/api/fees/payments', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/fees/payments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ export const FeeProvider = ({ children }) => {
 
     const createFeeStructure = async (structureData) => {
         try {
-            const response = await fetch('http://localhost:5001/api/fees/structures', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/fees/structures', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

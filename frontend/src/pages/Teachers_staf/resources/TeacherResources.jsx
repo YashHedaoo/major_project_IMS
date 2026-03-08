@@ -28,7 +28,7 @@ const TeacherResources = () => {
     const fetchResources = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5001/api/resources/teacher', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/resources/teacher', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -49,7 +49,7 @@ const TeacherResources = () => {
     const fetchDepartments = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5001/api/departments', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/departments', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (!response.ok) {
@@ -68,7 +68,7 @@ const TeacherResources = () => {
     const fetchSubjects = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5001/api/subjects', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/subjects', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (!response.ok) {
@@ -103,7 +103,7 @@ const TeacherResources = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5001/api/resources/upload', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/resources/upload', {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` },
                 body: data
@@ -131,7 +131,7 @@ const TeacherResources = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5001/api/resources/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/resources/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -237,7 +237,7 @@ const TeacherResources = () => {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <a
-                                        href={`http://localhost:5001/api/resources/${resource.id}/download`}
+                                        href={`${import.meta.env.VITE_API_URL}/api/resources/${resource.id}/download`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"

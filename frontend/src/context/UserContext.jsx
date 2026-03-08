@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
         setLoading(true);
         try {
             console.log('[UserContext] Fetching users from API...');
-            const response = await fetch('http://localhost:5001/api/users', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -59,7 +59,7 @@ export const UserProvider = ({ children }) => {
 
     const addUser = async (newUser) => {
         try {
-            const response = await fetch('http://localhost:5001/api/users', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export const UserProvider = ({ children }) => {
         if (!window.confirm('Are you sure you want to delete this user?')) return;
 
         try {
-            const response = await fetch(`http://localhost:5001/api/users/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

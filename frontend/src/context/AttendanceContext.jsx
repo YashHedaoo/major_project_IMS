@@ -16,7 +16,7 @@ export const AttendanceProvider = ({ children }) => {
     // Fetch Classes (Departments)
     const fetchClasses = async () => {
         try {
-            const response = await fetch('http://localhost:5001/api/departments', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/departments', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const data = await response.json();
@@ -40,7 +40,7 @@ export const AttendanceProvider = ({ children }) => {
         setLoading(true);
         try {
             const queryParams = new URLSearchParams(filters).toString();
-            const response = await fetch(`http://localhost:5001/api/attendance?${queryParams}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/attendance?${queryParams}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -66,7 +66,7 @@ export const AttendanceProvider = ({ children }) => {
     // Mark Attendance (Bulk)
     const markAttendance = async (records, date, subject, className) => {
         try {
-            const response = await fetch('http://localhost:5001/api/attendance', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/attendance', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ export const AttendanceProvider = ({ children }) => {
         if (!id || id === 'undefined' || id === 'null') return;
 
         try {
-            const response = await fetch(`http://localhost:5001/api/attendance/stats/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/attendance/stats/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -116,7 +116,7 @@ export const AttendanceProvider = ({ children }) => {
                 year: year.toString(),
                 studentId: id
             }).toString();
-            const response = await fetch(`http://localhost:5001/api/attendance/summary?${queryParams}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/attendance/summary?${queryParams}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -131,7 +131,7 @@ export const AttendanceProvider = ({ children }) => {
     // Correct Attendance Record (Admin/HOD)
     const correctAttendance = async (id, status) => {
         try {
-            const response = await fetch(`http://localhost:5001/api/attendance/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/attendance/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

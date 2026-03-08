@@ -17,7 +17,7 @@ const StudentResources = () => {
     const fetchResources = async () => {
         try {
             const token = localStorage.getItem('token');
-            let url = 'http://localhost:5001/api/resources/student';
+            let url = `${import.meta.env.VITE_API_URL}/api/resources/student';
             const params = new URLSearchParams();
             if (filters.semester) params.append('semester', filters.semester);
             if (filters.subjectId) params.append('subjectId', filters.subjectId);
@@ -44,7 +44,7 @@ const StudentResources = () => {
     const fetchSubjects = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5001/api/subjects', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/subjects', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -200,7 +200,7 @@ const StudentResources = () => {
 
                             <div className="px-6 py-3 bg-gray-50 border-t border-gray-200 flex gap-2">
                                 <a
-                                    href={`http://localhost:5001/api/resources/${resource.id}/download`}
+                                    href={`${import.meta.env.VITE_API_URL}/api/resources/${resource.id}/download`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"

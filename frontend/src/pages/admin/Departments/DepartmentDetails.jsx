@@ -31,7 +31,7 @@ const DepartmentDetails = () => {
                 params.append('year', yearMap[selectedYear] || selectedYear);
             }
 
-            const response = await fetch(`http://localhost:5001/api/users/students?${params.toString()}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/students?${params.toString()}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -49,7 +49,7 @@ const DepartmentDetails = () => {
     const fetchTeachers = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:5001/api/users/teachers?department=${encodeURIComponent(deptName)}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/teachers?department=${encodeURIComponent(deptName)}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             if (response.ok) {

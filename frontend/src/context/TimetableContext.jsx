@@ -35,7 +35,7 @@ export const TimetableProvider = ({ children }) => {
 
     // Fetch departments on mount
     useEffect(() => {
-        fetch('http://localhost:5001/api/departments', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/departments', {
             headers: getAuthHeaders()
         })
             .then(res => res.json())
@@ -53,7 +53,7 @@ export const TimetableProvider = ({ children }) => {
 
     // Fetch subjects
     useEffect(() => {
-        fetch('http://localhost:5001/api/subjects', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/subjects', {
             headers: getAuthHeaders()
         })
             .then(res => res.json())
@@ -67,7 +67,7 @@ export const TimetableProvider = ({ children }) => {
     // Fetch teachers
     useEffect(() => {
         // Fetch from Teachers table (not Users) - includes user data
-        fetch('http://localhost:5001/api/teachers', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/teachers', {
             headers: getAuthHeaders()
         })
             .then(res => res.json())
@@ -97,7 +97,7 @@ export const TimetableProvider = ({ children }) => {
                 section: filters.section
             });
 
-            const response = await fetch(`http://localhost:5001/api/timetable?${queryParams}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/timetable?${queryParams}`, {
                 headers: getAuthHeaders()
             });
             const data = await response.json();
@@ -135,7 +135,7 @@ export const TimetableProvider = ({ children }) => {
                 [startTime, endTime] = newSlot.time.split(' - ');
             }
 
-            const response = await fetch('http://localhost:5001/api/timetable', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/timetable', {
                 method: 'POST',
                 headers: getAuthHeaders(),
                 body: JSON.stringify({
@@ -176,7 +176,7 @@ export const TimetableProvider = ({ children }) => {
                 [startTime, endTime] = updatedSlot.time.split(' - ');
             }
 
-            const response = await fetch(`http://localhost:5001/api/timetable/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/timetable/${id}`, {
                 method: 'PUT',
                 headers: getAuthHeaders(),
                 body: JSON.stringify({
@@ -207,7 +207,7 @@ export const TimetableProvider = ({ children }) => {
 
     const deleteSlot = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5001/api/timetable/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/timetable/${id}`, {
                 method: 'DELETE',
                 headers: getAuthHeaders()
             });

@@ -25,7 +25,7 @@ const Requests = () => {
 
     const fetchRequests = async () => {
         try {
-            const response = await fetch(`http://localhost:5001/api/requests?role=${activeTab}`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/requests?role=${activeTab}`);
             const data = await response.json();
             setRequests(data);
         } catch (error) {
@@ -35,7 +35,7 @@ const Requests = () => {
 
     const updateRequestStatus = async (id, newStatus, comment) => {
         try {
-            await fetch(`http://localhost:5001/api/requests/${id}`, {
+            await fetch(`${import.meta.env.VITE_API_URL}/api/requests/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus, adminComment: comment })

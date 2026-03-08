@@ -19,7 +19,7 @@ const TeacherRequests = () => {
 
     const fetchRequests = async () => {
         try {
-            const response = await fetch(`http://localhost:5001/api/requests/my?userId=${user.id}`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/requests/my?userId=${user.id}`);
             const data = await response.json();
             setRequests(data);
         } catch (error) {
@@ -34,7 +34,7 @@ const TeacherRequests = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5001/api/requests', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/requests', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

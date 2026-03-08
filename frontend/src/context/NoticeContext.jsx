@@ -13,8 +13,8 @@ export const NoticeProvider = ({ children }) => {
     const fetchNotices = async (audience = '') => {
         try {
             const url = audience
-                ? `http://localhost:5001/api/notices?audience=${audience}`
-                : 'http://localhost:5001/api/notices';
+                ? `${import.meta.env.VITE_API_URL}/api/notices?audience=${audience}`
+                : `${import.meta.env.VITE_API_URL}/api/notices';
 
             const response = await fetch(url, {
                 headers: {
@@ -34,7 +34,7 @@ export const NoticeProvider = ({ children }) => {
 
     const addNotice = async (noticeData) => {
         try {
-            const response = await fetch('http://localhost:5001/api/notices', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notices', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export const NoticeProvider = ({ children }) => {
 
     const deleteNotice = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5001/api/notices/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notices/${id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -87,7 +87,7 @@ export const NoticeProvider = ({ children }) => {
         const notice = notices.find(n => n.id === id);
         if (notice) {
             try {
-                const response = await fetch(`http://localhost:5001/api/notices/${id}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notices/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ export const NoticeProvider = ({ children }) => {
 
     const approveNotice = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5001/api/notices/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notices/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ export const NoticeProvider = ({ children }) => {
 
     const archiveNotice = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5001/api/notices/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notices/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
