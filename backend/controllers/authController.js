@@ -94,6 +94,8 @@ export const login = async (req, res) => {
         const fullUserData = {
             ...userJSON,
             ...profileData,
+            id: userJSON.id, // Ensure user ID is preserved, overriding the profileData ID if there is a conflict
+            profileId: profileData.id,
             department: profileData.department || userJSON.department,
         };
 
